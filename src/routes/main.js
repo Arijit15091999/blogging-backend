@@ -2,16 +2,21 @@ const { Router } = require('express')
 // import all controllers
 // import SessionController from './app/controllers/SessionController';
 
-const routes = Router();
+const routes = Router()
+const Detail = require('../models/detail.js')
 
-routes.get("/", function (req, res) {
-    res.render("index");
-});
-
-routes.get('/gallery', function (req, res) {
-  res.render('gallery')
+routes.get('/', async function (req, res) {
+  const detail = await Detail.find({})
+  // console.log(detail[0]);
+  res.render('index', { detail: detail[0] })
 })
 
+routes.get('/gallery', async function (req, res) {
+  const detail = await Detail.find({})
 
-module.exports = routes;
+  res.render('gallery', {
+    detail: detail[0]
+  })
+})
 
+module.exports = routes
