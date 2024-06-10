@@ -20,7 +20,7 @@ startServer();
 
 async function connectDB () {
   const response = await mongoose.connect(connectionString)
-  console.log(response.connections[0].host)
+  console.log(`databse hosted at : ${response.connections[0].host}`)
 }
 
 async function startServer () {
